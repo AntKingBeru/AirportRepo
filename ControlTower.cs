@@ -1,37 +1,52 @@
-﻿namespace Airport_Class4;
+﻿using static System.Console;
+
+namespace Airport_Class4.AirportRepo;
 
 public class ControlTower : IMediator
 {
-    private readonly List<LandingZone> _landings = new List<LandingZone>();
+    private readonly LandingPad _pad;
+    private readonly Runway _runway;
 
-    public ControlTower(List<LandingZone> landings)
+    public ControlTower(LandingPad pad, Runway runway)
     {
-        _landings = landings;
-        foreach (var zone in _landings)
-            zone.SetMediator(this);
+        _pad = pad;
+        _runway = runway;
     }
 
-    public void AddLanding(LandingZone newZone)
+    public void LandPlane(Airplane plane)
     {
-        _landings.Add(newZone);
-        newZone.SetMediator(this);
-    }
-
-    public void RemoveLanding(LandingZone zone)
-    {
-        _landings.Remove(zone);
-    }
-
-    public void Notify(AirVehicle sender, string message)
-    {
-        if (message == "TakeOff")
+        if (_runway.IsFree)
         {
-            Console.WriteLine("Control Tower: " + sender.GetType().Name + " is taking off.");
+            plane.Land(_runway.Id);
         }
-
-        if (message == "Land")
+        else
         {
-            Console.WriteLine("Control Tower: " + sender.GetType().Name + " is landing.");
+            WriteLine($"Runway {_runway.Id} is busy.");
+        }
+    }
+
+    public void LandChopper(Helicopter chopper)
+    {
+        if (_pad.IsFree)
+        {
+            chopper.Land(_pad.Id);
+        }
+        else
+        {
+            WriteLine($"Pad {_pad.Id} is busy.");
+        }
+    }
+
+    public void Notify(AirVehicle sender, string action)
+    {
+        switch (action)
+        {
+            case "Land":
+                WriteLine($"{sender.GetType().Name} is landing.");
+                break;
+            case "TakeOff":
+                WriteLine($"{sender.GetType().Name} is taking off.");
+                break;
         }
     }
 }

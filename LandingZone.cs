@@ -1,15 +1,18 @@
-﻿namespace Airport_Class4;
+﻿using static System.Console;
+
+namespace Airport_Class4.AirportRepo;
 
 public abstract class LandingZone
 {
-    protected string Id;
     protected IMediator? Mediator;
-    protected bool IsTaken;
+    public string Id { get; }
+
+    public bool IsFree { get; private set; }
 
     protected LandingZone(string id)
     {
         Id = id;
-        IsTaken = false;
+        IsFree = false;
     }
 
     public void SetMediator(IMediator mediator)
@@ -17,15 +20,15 @@ public abstract class LandingZone
         Mediator = mediator;
     }
 
-    public virtual void Land(AirVehicle vehicle)
+    public void Land()
     {
-        // vehicle.Land();
-        IsTaken = true;
+        IsFree = true;
+        WriteLine($"{Id} is now taken.");
     }
     
-    public virtual void TakeOff(AirVehicle vehicle)
+    public void TakeOff()
     {
-        // vehicle.TakeOff();
-        IsTaken = false;
+        IsFree = false;
+        WriteLine($"{Id} is now free.");
     }
 }
