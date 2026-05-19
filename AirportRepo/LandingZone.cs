@@ -12,7 +12,7 @@ public abstract class LandingZone
     protected LandingZone(string id)
     {
         Id = id;
-        IsFree = false;
+        IsFree = true;
     }
 
     public void SetMediator(IMediator mediator)
@@ -22,13 +22,13 @@ public abstract class LandingZone
 
     public void Land()
     {
-        IsFree = true;
+        IsFree = false;
         WriteLine($"{Id} is now taken.");
     }
     
     public void TakeOff()
     {
-        IsFree = false;
+        IsFree = true;
         WriteLine($"{Id} is now free.");
     }
 }

@@ -3,7 +3,7 @@
 public abstract class AirVehicle
 {
     protected IMediator Mediator;
-    protected string FlightNumber;
+    public string FlightNumber;
 
     protected AirVehicle(IMediator mediator, string flightNumber)
     {

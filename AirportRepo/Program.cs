@@ -1,7 +1,6 @@
 ﻿using static System.Console;
 using Airport_Class4.AirportRepo;
 
-WriteLine("P.Diddy is a pedo");
 
 // Landing Zones
 var pad = new LandingPad("Pad");
@@ -12,8 +11,16 @@ var tower = new ControlTower(pad, runway);
 
 // Generating Vehicles
 var chopper1 = new Helicopter(tower, "L-1D0R");
-var chopper2 = new Helicopter(tower,"T-0N3R");
-var chopper3 = new Helicopter(tower,"M-1K3");
+var chopper2 = new Helicopter(tower,"T-0M3R");
 var plane1 = new Airplane(tower, "DP-2026");
-var plane2 = new Airplane(tower, "T-1LTAN");
-var plane3 = new Airplane(tower, "AAA");
+var plane2 = new Airplane(tower, "M-1K3");
+
+
+chopper1.Send("Land");
+plane1.Send("Land");
+chopper2.Send("Land");
+chopper1.Send("TakeOff");
+plane1.Send("TakeOff");
+chopper2.Send("Land");
+plane2.Send("Land");
+plane2.Send("TakeOff");
