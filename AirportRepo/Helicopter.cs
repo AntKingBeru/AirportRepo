@@ -4,7 +4,7 @@ namespace Airport_Class4.AirportRepo;
 
 public class Helicopter : AirVehicle
 {
-    public Helicopter(IMediator mediator) : base(mediator)
+    public Helicopter(IMediator mediator, string flightNumber) : base(mediator, flightNumber)
     {
         
     }

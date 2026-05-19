@@ -4,7 +4,7 @@ namespace Airport_Class4.AirportRepo;
 
 public class Airplane : AirVehicle
 {
-    public Airplane(IMediator mediator) : base(mediator)
+    public Airplane(IMediator mediator, string flightNumber) : base(mediator, flightNumber)
     {
         
     }
@@ -21,11 +21,11 @@ public class Airplane : AirVehicle
 
     public override void Send(string message)
     {
-        throw new NotImplementedException();
+       
     }
 
     public override void Receive(string message)
     {
-        throw new NotImplementedException();
+        
     }
 }
