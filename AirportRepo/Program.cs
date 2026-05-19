@@ -17,4 +17,3 @@ var chopper3 = new Helicopter(tower);
 var plane1 = new Airplane(tower);
 var plane2 = new Airplane(tower);
 var plane3 = new Airplane(tower);
-
